@@ -1,8 +1,8 @@
 import { getDirectusClient } from '$lib/client';
 import { formatRelativeTime } from '../../../shared/utils/format-relative-time';
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET() {
+/** @type {import('@sveltejs/kit').PageServerLoad} */
+export async function load() {
 	const directus = await getDirectusClient();
 
 	let response;
@@ -12,6 +12,7 @@ export async function GET() {
 			sort: '-publish_date'
 		});
 	} catch (err) {
+		throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
 		return {
 			status: 404
 		};
@@ -25,6 +26,7 @@ export async function GET() {
 	});
 
 	if (!formattedArticles) {
+		throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
 		return {
 			status: 404
 		};
@@ -33,9 +35,7 @@ export async function GET() {
 	const [hero, ...articles] = formattedArticles;
 
 	return {
-		body: {
-			hero,
-			articles
-		}
+		hero,
+		articles
 	};
 }

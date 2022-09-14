@@ -1,4 +1,6 @@
 <script>
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import { getAssetURL } from '$lib/get-asset-url';
 	import BackIcon from '$lib/components/icons/Back.svelte';
 	import LinkIcon from '$lib/components/icons/Link.svelte';
